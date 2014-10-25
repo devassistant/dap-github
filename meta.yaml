@@ -1,0 +1,12 @@
+package_name: github
+version: 0.10.0dev
+license: GPLv2+
+authors: [Bohuslav Kabrda <bkabrda@redhat.com>]
+homepage: https://github.com/devassistant/dap-github
+summary: GitHub assistant
+bugreports: https://github.com/devassistant/dap-github/issues
+dependencies: [common_args]
+description: |
+    Creates GitHub repository (+ local git repository if not already created)
+    and optionally pushes sources there.
+    Works even for projects that weren't created by DevAssistant.
