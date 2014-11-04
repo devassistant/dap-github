@@ -5,7 +5,7 @@ authors: [Bohuslav Kabrda <bkabrda@redhat.com>]
 homepage: https://github.com/devassistant/dap-github
 summary: GitHub assistant
 bugreports: https://github.com/devassistant/dap-github/issues
-dependencies: [common_args]
+dependencies: [common_args, git]
 description: |
     Creates GitHub repository (+ local git repository if not already created)
     and optionally pushes sources there.
