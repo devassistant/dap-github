@@ -1,5 +1,37 @@
-# Determining the correct username in this order:
+# Create github fork
+#
+# Args:
+#   $gh_username: github username provided by user, if empty, will be deduced
+#                 by run_get_github_username
+#   $url: url of Github repo to fork
+# Returns:
+#   url of the cloned repo
+# Fails:
+#   if forking fails
+run_github_fork:
+- $gh_username~:
+  - use:
+      sect: github.run_get_github_username
+      args:
+        from: $gh_username
+- $lres, $fork_url~:
+  - github:
+    - create_fork
+    - login: $gh_username
+      repo_url: $url
+- if not $lres:
+  - log_e: Failed to fork GitHub repo $url, exiting ...
+- return: $fork_url
+
+
+# Determine the correct Github username in this order:
 #   user-provided argument > github global config > whoami
+#
+# Args:
+#   $from: github username provided by user - if empty, will be deduced
+#          from gitub global config or `whoami`
+# Returns:
+#   proper github name
 run_get_github_username:
 - if $([ "$from" == "" ]):
   - $gh_conf_username~: $(git config --global --get-regexp 'github\.user\..*' '.+' | head -1 | grep -o '\S\+$')
@@ -9,5 +41,4 @@ run_get_github_username:
     - $gh_username~: "$gh_conf_username"
 - else:
   - $gh_username~: "$from"
-# "fake" return to make sure that $gh_username gets returned
-- $return: $gh_username
+- return: $gh_username
