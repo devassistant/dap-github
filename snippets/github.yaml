@@ -21,7 +21,8 @@ run_github_fork:
       repo_url: $url
 - if not $lres:
   - log_e: Failed to fork GitHub repo $url, exiting ...
-- return: $fork_url
+# Fake returning - assigning will yield the assigned value as the result of this section
+- $return: $fork_url
 
 
 # Determine the correct Github username in this order:
@@ -41,4 +42,5 @@ run_get_github_username:
     - $gh_username~: "$gh_conf_username"
 - else:
   - $gh_username~: "$from"
-- return: $gh_username
+# Fake returning - assigning will yield the assigned value as the result of this section
+- $return: $gh_username
