@@ -6,7 +6,7 @@
 #   $url: url of Github repo to fork
 # Returns:
 #   url of the cloned repo
-# Fails:
+# Raises exception:
 #   if forking fails
 run_github_fork:
 - $gh_username~:
