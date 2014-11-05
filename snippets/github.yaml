@@ -1,0 +1,13 @@
+# Determining the correct username in this order:
+#   user-provided argument > github global config > whoami
+run_get_github_username:
+- if $([ "$from" == "" ]):
+  - $gh_conf_username~: $(git config --global --get-regexp 'github\.user\..*' '.+' | head -1 | grep -o '\S\+$')
+  - if not "$gh_conf_username":
+    - $gh_username~: $(whoami)
+  - else:
+    - $gh_username~: "$gh_conf_username"
+- else:
+  - $gh_username~: "$from"
+# "fake" return to make sure that $gh_username gets returned
+- $return: $gh_username
