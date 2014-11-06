@@ -1,3 +1,28 @@
+# Arguments provided to external assistants
+args:
+  github:
+    flags:
+    - -g
+    - --github
+    help:
+      'Create a GitHub repository and push your sources there (uses your system username or specified name)'
+    nargs:
+      '?'
+    gui_hints:
+      default: $(whoami)
+    preserved:
+      'global.github_login'
+
+  gh_fork:
+    flags: [--gh-fork]
+    help: Fork the repo, assuming it's on Github. Pass your GH username as argument if it's
+          different from your system username.
+    action: [default_iff_used, '']
+    nargs: '?'
+    gui_hints:
+      default: $(whoami)
+
+
 # Create github fork
 #
 # Args:
