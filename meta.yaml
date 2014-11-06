@@ -1,5 +1,5 @@
 package_name: github
-version: 0.10.0dev
+version: 0.10.1
 license: GPLv2+
 authors: [Bohuslav Kabrda <bkabrda@redhat.com>]
 homepage: https://github.com/devassistant/dap-github
